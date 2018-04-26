@@ -3,14 +3,11 @@ import chardet
 
 
 def get_top_ten_words(text):
-    words_dict = {}
-    for element in text.split():
-        word = element.lower()
-        if len(word) > 6:
-            if word not in words_dict:
-                words_dict[word] = 1
-            else:
-                words_dict[word] += 1
+    words_dict = dict()
+    words_list = text.strip().lower().split()
+    for word in words_list:
+        if len(word) > 6 and word not in words_dict:
+            words_dict[word] = words_list.count(word)
 
     sorted_words = sorted(words_dict.items(), key=lambda x: -x[1])
     i = 1
